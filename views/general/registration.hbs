@@ -1,0 +1,74 @@
+<h3>Sign Up</h3>
+<p>Create your account by entering your email address and choosing a password</p>
+
+<section class="registration">
+    
+    <form action="/registration" method="POST">
+
+        <div class="signUp">
+
+            <label for="fname">First Name:</label><br>
+            <input type="text" id="fname" name="fname" value={{values.fname}}>
+
+            <br> 
+
+            {{#if validationResults.fname}}
+                <span style="color: red;">{{ validationResults.fname }}</span><br/>
+            {{/if}}
+
+        </div>
+
+        <br>
+
+        <div class="signUp">
+
+            <label for="lname">Last Name:</label><br>
+            <input type="text" id="lname" name="lname" value={{values.lname}}>
+
+            <br>
+
+            {{#if validationResults.lname}}
+                <span style="color: red;">{{ validationResults.lname }}</span><br/>
+            {{/if}}
+
+        </div>
+
+        <br>
+        
+        <div class="signUp">  
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" value={{values.email}}>
+
+            <br>
+
+            {{#if validationResults.email}}
+                <span style="color: red;">{{ validationResults.email }}</span><br/>
+            {{/if}}
+
+        </div>   
+        
+        <br>
+        
+        <div class="signUp">
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" >
+
+            <br>
+
+            {{#if validationResults.password}}
+                <span style="color: red;">{{ validationResults.password }}</span><br/>
+            {{/if}}
+
+        </div>
+        
+        <br>
+        
+        <div class="submitBtn">
+            <input type="submit" value="Sign up today">
+        </div>
+
+    </form>
+
+</section>

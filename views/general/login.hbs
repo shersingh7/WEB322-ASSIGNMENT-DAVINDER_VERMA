@@ -1,0 +1,57 @@
+<h3 class="welcome">Welcome back</h3>
+
+<section class="loginIn">
+    
+    {{#each errors}}
+        <p style="color: red;">{{this}}</p>
+    {{/each}}
+    
+    <form action="/login" method="POST">
+
+        <div class="loginIn">
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" value={{values.email}}>
+
+            <br>
+
+            {{#if validationResults.email}}
+                <span style="color: red;">{{ validationResults.email }}</span><br/>
+            {{/if}}
+
+        </div>
+
+        <br>
+
+        <div class="loginIn">
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" >
+
+            <br>
+
+            {{#if validationResults.password}}
+                <span style="color: red;">{{ validationResults.password }}</span><br/>
+            {{/if}}
+
+        </div>
+
+        <div class="loginIn">
+
+            <input type="radio" name="customer" id="customer" value="customer" >
+            <label for="customer">Customer</label>
+
+            <input type="radio" name="clerk" id="clerk" value="clerk" >
+            <label for="clerk">Data Entry Clerk</label>
+ 
+        </div>
+
+        <br>
+
+        <div class="submitBtn">
+            <input type="submit"  id="submit" value="Log in">
+        </div>
+
+    </form>
+
+</section>

@@ -1,0 +1,27 @@
+<p class="menuText">Inspired by the freshest ingredients, our chefs create eighteen unique recipes each and every week.</p>
+<br>
+
+<h3 class="menuHeading">Classic Meals</h3>
+
+<div class="onTheMenu">
+    {{#each classic}}
+            <div class="grid">
+                 {{>food this}}
+            </div>
+    {{/each}} 
+
+</div>
+
+<br>
+
+<h3 class="menuHeading">Starters</h3>
+
+<div class="onTheMenu">
+
+    {{#each starter}}
+            <div class="grid">
+                 {{>food this}}
+            </div>
+    {{/each}} 
+
+</div>

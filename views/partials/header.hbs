@@ -1,0 +1,26 @@
+<header>        
+
+    <div class="logo">
+        <a href="/">
+        <img alt="desi khana" src="images/logo.jpg" height="100px">
+    </a>
+    </div>
+    
+    <div class="links">
+        <a href="./onTheMenu">ON THE MENU</a>
+        <a href="">PRICING</a>
+        <a href="">BLOG</a>
+        <a href="">FAQ</a>
+        <a href="">ANNE-MARIE WITENSHAW</a>
+        <a href="">GIFT CARDS</a>
+        <a href="">BREAKFAST</a>
+         {{#if user}}
+            <p style="margin-left: 0px;margin-bottom:3px ;">Hello {{user.fname}} {{user.lname}}!  <button onclick="document.location='/login/logout' "style="float: right;margin-top: 0px;">Logout</button></p>
+        {{else}}
+            <button onclick="document.location='./login'"style="float: right;margin-top: 4px;">Login</button>
+            <button onclick="document.location='./registration'"style="margin-left: 550px;margin-bottom:3px ;">Sign Up</button>
+        {{/if}}
+    </div>
+
+
+    </header>

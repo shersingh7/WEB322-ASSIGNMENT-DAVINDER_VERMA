@@ -1,0 +1,358 @@
+/* CSS for base */
+html
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+body
+{
+    line-height: 1.7rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.logo
+{
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.logo img
+{
+    border-radius: 25%;
+}
+
+header
+{
+    background-color: red;
+    position: sticky;
+    width: 100%;
+}
+
+.links
+{
+    border-style: solid;
+    border-color: darkred;
+}
+
+header a
+{
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+/* Main  */
+
+.heroSection
+{
+    position: relative;
+    margin-top: 50px;
+}
+
+.textOnImage
+{
+    text-align: center;
+    color: white;
+    font-size: 150%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.textOnImage button
+{
+    background-color: orangered;
+    font-size: 25px;
+}
+
+a:hover
+{
+    color: white;
+}
+
+
+.contentSection
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    background-color: lightpink;
+}
+
+.contentSection img
+{
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}
+
+.topMeals img
+{
+    height: 200px;
+    width: 350px;
+    display: flex;
+}
+
+.topMeals
+{
+    float: left;
+    margin-left: 70px;
+    background-color: lightcoral;
+    margin-bottom: 25px ;
+    padding: 15px;
+    font-size: 1.5rem;
+    
+}
+
+.topMeals h4
+{
+    color: blue;
+    margin: 0%;
+}
+
+.topMeals p
+{
+    margin:0%;
+}
+
+/* Footer */
+footer a
+{
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.center
+{
+    text-align: center;
+    padding: 10px;
+}
+
+
+footer
+{
+    margin-top: 50px;
+    background-color: red;
+    padding: 5px;
+}
+
+.myfooter
+{
+    float: left;
+    margin: 25px;
+    padding-left:150px;
+    color: black;
+    font-weight: bolder;
+}
+
+.copyright
+{
+    padding-left:10px ;
+    font-weight: bolder;
+}
+
+
+/* Login Page */
+/* 
+input[type=text], select, textarea , input[type=password]
+{
+  width: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+} */
+  
+input[type=button], input[type=submit] 
+{
+  background-color: red;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  margin: 15px;
+}
+
+input[type=submit]:hover
+{
+  background-color: black;
+}
+
+.loginIn 
+{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding-top: 20px;
+  margin-left: 50px;
+  width: 50%;
+}
+
+.welcome
+{
+    margin-left: 50px;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+/* Registration Page */
+
+input[type=text], select, textarea ,input[type=password], input[type=email]
+{
+  width: 70%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+}
+  
+input[type=button] 
+{
+  background-color: red;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  margin-left: 0px;
+}
+
+input[type=submit]:hover
+{
+  background-color: black;
+}
+
+.registration 
+{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-left: 50px;
+  width: 50%;
+  margin-bottom: 50px;
+}
+
+/* On the Manu Page */
+
+.onTheMenu
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 15px;
+    justify-items: center;
+    
+}
+
+.onTheMenu > div
+{
+    margin-bottom: 50px;
+    padding: 10px;
+    background-color: lightpink;
+}
+
+.onTheMenu h4,p
+{
+    margin: 0%;
+}
+
+.grid > img
+{
+    height: 200px;
+    width: 350px;
+    /* display: flex; */
+}
+
+.menuText
+{
+    font-weight: bolder;
+    font-size: x-large;
+    color: orangered;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.menuHeading
+{
+    text-align: center;
+    font-weight: bolder;
+    font-size: xx-large;
+    color: orangered;
+}
+
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) 
+{ 
+    body
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    body > img
+    {
+        width: 90%;
+        justify-self: center;
+    }
+
+    .heroSection > img
+    {
+        height: 100px;
+        width: 100px;
+    }
+
+    .contentSection
+    {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) 
+{
+    body
+    {
+        display: grid;
+        grid-template-columns: 2fr;
+    }
+
+    body > img
+    {
+        width: 90%;
+        justify-self: center;
+    }
+
+    .heroSection > img
+    {
+        height: 250px;
+        width: 250px;
+    }
+
+    .contentSection
+    {
+        grid-template-columns: 2fr;
+    }
+
+    .onTheMenu
+    {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) 
+{
+    .contentSection
+    {
+        grid-template-columns: 3fr;
+    }
+
+    .onTheMenu
+    {
+        grid-template-columns: 1fr;
+    }
+}
