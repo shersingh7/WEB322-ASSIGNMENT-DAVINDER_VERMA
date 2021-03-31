@@ -67,8 +67,8 @@ router.get("/", function(req, res){
                      req.session.user = newName;
 
 
-                     if (req.body.clerk) res.redirect("/clerk");
-                     if (req.body.customer) res.redirect("/customer");
+                     if (req.body.whoThis == "clerk") res.redirect("/clerk");
+                     if (req.body.whoThis == "customer") res.redirect("/customer");
                     
                   }
                   else {
