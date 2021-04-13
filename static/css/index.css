@@ -183,7 +183,7 @@ input[type=submit]:hover
   background-color: black;
 }
 
-.loginIn 
+.loginIn, .addMealKit 
 {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -236,7 +236,7 @@ input[type=submit]:hover
 
 /* On the Manu Page */
 
-.onTheMenu
+.onTheMenu , .updateMealKit
 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -244,8 +244,28 @@ input[type=submit]:hover
     justify-items: center;
     
 }
+.updateMealKit > input[type=text], .updateMealKit > input[type=textarea], .updateMealKit > input[type=file]
+{
+    text-align: left;
+  width: 285px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+}
 
-.onTheMenu > div
+.updateMealKit > label
+{
+    justify-self: left;
+}
+
+.updateMealKit
+{
+    width: 50px;
+    margin-left: 0ch;
+}
+
+
+.onTheMenu > div /*.updateMealKit > div*/
 {
     margin-bottom: 50px;
     padding: 10px;
@@ -262,6 +282,11 @@ input[type=submit]:hover
     height: 200px;
     width: 350px;
     /* display: flex; */
+}
+
+.onTheMenu > form > img
+{
+    height: 10px;
 }
 
 .menuText

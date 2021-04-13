@@ -48,10 +48,14 @@ app.use((req, res, next) => {
 const generalController = require("./controllers/general");
 const registrationController = require("./controllers/registration");
 const loginController = require("./controllers/login");
+const loadDataController = require("./controllers/loadData");
+
 
 app.use("/", generalController);
 app.use("/registration", registrationController);
 app.use("/login", loginController);
+app.use("/load-data", loadDataController);
+
 
 // Set up and connect to MongoDB
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {

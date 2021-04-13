@@ -1,1 +1,127 @@
 <h3>CLERK</h3>
+
+{{#if user.clerk}}
+
+<section class="addMealKit">
+
+        {{#each errors}}
+            <p style="color: red;">{{this}}</p>
+        {{/each}}
+
+        {{#each result}}
+           <p style="color: red;">{{this}}</p>
+        {{/each}}
+
+    
+    <form action="/load-data/meal-kits" method="POST" enctype="multipart/form-data">
+
+        <div class="addMealKit">
+
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title">
+
+        </div>
+
+        <br>
+
+        <div class="addMealKit">
+
+            <label for="wIncluded">What is included:</label><br>
+            <input type="text" id="wIncluded" name="wIncluded">
+
+        </div>
+
+        <br>
+
+        <div class="addMealKit">
+
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50"></textarea>
+
+        </div>
+
+        <br>
+        
+        <div class="addMealKit">  
+
+           <label for="category">Category:</label>
+
+                <select name="category" id="category">
+                    <option value="classic">Classic</option>
+                    <option value="starter">Starter</option>
+                </select>
+
+        </div>   
+        
+        <br>
+        
+        <div class="addMealKit">
+
+            <label for="price">Price:</label><br>
+            <input type="text" id="price" name="price" >
+
+        </div>
+
+         <br>
+        
+        <div class="addMealKit">
+
+            <label for="cookingTime">Cooking Time:</label><br>
+            <input type="text" id="cookingTime" name="cookingTime" >
+
+        </div>
+
+         <br>
+        
+        <div class="addMealKit">
+
+            <label for="servings">Servings:</label><br>
+            <input type="text" id="servings" name="servings" >
+
+        </div>
+
+         <br>
+        
+        <div class="addMealKit">
+
+            <label for="calories">Calories Per Serving:</label><br>
+            <input type="text" id="calories" name="calories" >
+
+        </div>
+
+         <br>
+        
+        <div class="addMealKit">
+
+            <label for="topMeal">Top Meal:</label><br>
+
+            <input type="radio" name="topMeal" id="true" value="true" checked="false">
+            <label for="true">True</label>
+
+            <input type="radio" name="topMeal" id="false" value="false" checked="false">
+            <label for="false">False</label>
+
+        </div>
+
+         <br>
+        
+        <div class="addMealKit">
+
+            <label>Upload a photo of the meal kit</label>
+            <input type="file" name="photo" accept="image/*" id="photo"> <br><br>
+
+        </div>
+        
+        <br>
+        
+        <div class="submitBtn">
+            <input type="submit" value="Add the meal">
+        </div>
+
+
+
+    </form>
+
+</section>
+{{else}} <h3>Only Clerk can access this page</h3>
+{{/if}}

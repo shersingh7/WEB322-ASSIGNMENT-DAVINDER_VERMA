@@ -2,23 +2,31 @@
 
     <div class="logo">
         <a href="/">
-        <img alt="desi khana" src="images/logo.jpg" height="100px">
+        <img alt="desi khana" src="/images/logo.jpg" height="100px">
     </a>
     </div>
     
     <div class="links">
-        <a href="./onTheMenu">ON THE MENU</a>
+        {{#if user.clerk}}
+            <a href="/onTheMenuClerk">ON THE MENU</a>
+        {{else}}
+            <a href="/onTheMenu">ON THE MENU</a>
+        {{/if}}
         <a href="">PRICING</a>
         <a href="">BLOG</a>
         <a href="">FAQ</a>
         <a href="">ANNE-MARIE WITENSHAW</a>
         <a href="">GIFT CARDS</a>
         <a href="">BREAKFAST</a>
+        {{#if user.clerk}}
+                <a href="/load-data/meal-kits">ADD MEAL KITS</a>
+        {{/if}}
+
          {{#if user}}
             <p style="margin-left: 0px;margin-bottom:3px ;">Hello {{user.fname}} {{user.lname}}!  <button onclick="document.location='/login/logout' "style="float: right;margin-top: 0px;">Logout</button></p>
         {{else}}
-            <button onclick="document.location='./login'"style="float: right;margin-top: 4px;">Login</button>
-            <button onclick="document.location='./registration'"style="margin-left: 700px;margin-bottom:3px ;">Sign Up</button>
+            <button onclick="document.location='/login'"style="float: right;margin-top: 4px;">Login</button>
+            <button onclick="document.location='/registration'"style="margin-left: 700px;margin-bottom:3px ;">Sign Up</button>
         {{/if}}
     </div>
 

@@ -6,6 +6,7 @@
 <div class="onTheMenu">
     {{#each classic}}
             <div class="grid">
+               <img src="{{photo}}"> 
                  {{>food this}}
             </div>
     {{/each}} 
@@ -17,11 +18,13 @@
 <h3 class="menuHeading">Starters</h3>
 
 <div class="onTheMenu">
-
-    {{#each starter}}
+   {{#each starter}}
             <div class="grid">
-                 {{>food this}}
-            </div>
-    {{/each}} 
+      <img src="{{photo}}"> 
 
-</div>
+                 {{>food this}}
+
+            </div>
+   {{/each}} 
+
+</div>   

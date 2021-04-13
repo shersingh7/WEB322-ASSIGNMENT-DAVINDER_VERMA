@@ -3,14 +3,11 @@ const bcrypt = require("bcryptjs");
 const path = require("path");
 const NameModel = require('../models/registration');
 const mongoose = require("mongoose");
-
 const session = require('express-session');
-
-
 const router = express.Router();
 
 //Connect to MongoDB
-mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {
+mongoose.connect("mongodb+srv://davinderverma:Sydney@2021@web322.v53z3.mongodb.net/web322MealKits?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -27,7 +24,8 @@ router.get("/", function(req, res){
       lname: req.body.lfame,
       fname: req.body.fname,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      type: req.body.type
   });
      
   let validationResults = {};
@@ -64,11 +62,29 @@ router.get("/", function(req, res){
   
                       // Create a new session and set the user to the
                       // "user" object returned from the DB.
-                     req.session.user = newName;
+                      if(req.body.type == 'clerk')
+                      {
+                        req.session.user = {
+                       fname: newName.fname,
+                       lname: newName.lname,
+                       clerk: req.body.type,
+                       cart: []
+                       };
 
+                       res.redirect("/load-data/meal-kits");
 
-                     if (req.body.whoThis == "clerk") res.redirect("/clerk");
-                     if (req.body.whoThis == "customer") res.redirect("/customer");
+                      }
+                      else if(req.body.type == 'customer')
+                      {
+                        req.session.user = {
+                          fname: newName.fname,
+                          lname: newName.lname,
+                          customer: req.body.type,
+                          cart: []
+                          };
+
+                        res.redirect("/customer");
+                      }
                     
                   }
                   else {
@@ -128,7 +144,5 @@ router.get("/", function(req, res){
     res.redirect("/login");
   });
   
-
-
 
   module.exports = router;  
