@@ -43,7 +43,7 @@ router.get("/onTheMenu", function(req, res){
        
       starterData = starterData.map(value => value.toObject());
 
-          res.render("../views/general/onTheMenu", {
+        res.render("../views/general/onTheMenu", {
             classic: classicData,
             starter: starterData
           });
@@ -65,7 +65,6 @@ router.get("/onTheMenuClerk", function(req, res){
     .then((starterData) => {
        
       starterData = starterData.map(value => value.toObject());
-
           res.render("../views/general/onTheMenuClerk", {
             classic: classicData,
             starter: starterData

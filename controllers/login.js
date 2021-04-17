@@ -67,6 +67,7 @@ router.get("/", function(req, res){
                         req.session.user = {
                        fname: newName.fname,
                        lname: newName.lname,
+                       email: newName.email,
                        clerk: req.body.type,
                        cart: []
                        };
@@ -79,6 +80,7 @@ router.get("/", function(req, res){
                         req.session.user = {
                           fname: newName.fname,
                           lname: newName.lname,
+                          email: newName.email,
                           customer: req.body.type,
                           cart: []
                           };

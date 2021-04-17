@@ -1,0 +1,11 @@
+<div class="onTheMenu" style="margin-left: 0px; margin-top: 50px; left">
+    {{#each kit}}
+            <div class="grid">
+               <img src="/{{photo}}"> 
+                 {{>food this}}
+                <form method="POST" action="/load-data/addToCart/{{this.title}}">
+                    <input type="submit" value="Buy"/>
+                </form>
+            </div>
+    {{/each}} 
+</div>

@@ -7,7 +7,9 @@
     {{#each classic}}
             <div class="grid">
                <img src="{{photo}}"> 
+               <a href="/load-data/{{this.title}}" style="all:unset;">
                  {{>food this}}
+               </a>
             </div>
     {{/each}} 
 
@@ -22,7 +24,9 @@
             <div class="grid">
       <img src="{{photo}}"> 
 
+               <a href="/load-data/{{this.title}}" style="all:unset;">
                  {{>food this}}
+               </a>
 
             </div>
    {{/each}} 

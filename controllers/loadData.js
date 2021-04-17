@@ -1,9 +1,11 @@
 const express = require('express');
-const bcrypt = require("bcryptjs");
 const path = require("path");
+const { REPLServer } = require('repl');
 const foodItemsModule = require("../models/foodItemsLists");
-const { userInfo } = require('os');
+const NameModel = require('../models/registration');
 const router = express.Router();
+
+let total=0; // Total price for shopping cart
 
 router.get("/meal-kits", (req, res) => {
   res.render("general/clerk");
@@ -88,6 +90,17 @@ router.post("/meal-kits", (req, res) => {
         });
 });
 
+router.get("/shoppingCart", (req, res)=>{
+    
+    req.session.user.cart.forEach(meal => {total += meal.price;});
+
+    res.render("general/shoppingCart", {
+        cart: req.session.user.cart,
+       totalPrice: total.toFixed(2) 
+    });
+
+});
+
 router.post("/update", (req, res) => {
 
     foodItemsModule.updateOne({
@@ -120,6 +133,163 @@ router.post("/update", (req, res) => {
 
             })
 });
+
+router.get("/:title", (req,res)=>{
+
+  
+    foodItemsModule.find({title: req.params.title})
+    .exec()
+    .then((mealKit)=>{
+        mealKit = mealKit.map(value => value.toObject());
+        res.render("../views/general/desc",{
+            kit: mealKit
+        });
+    });
+});
+
+router.post("/addToCart/:title", (req,res)=>{
+    
+    let errors = [];
+    let found = false;
+    if(req.session.user)
+    {
+        if(req.session.user.cart[0])
+        {
+            for(var meal in req.session.user.cart)
+            {
+                if(req.session.user.cart[meal].title === req.params.title) 
+                {
+                    req.session.user.cart[meal].qty++;
+                    found = true;
+                    res.redirect("/load-data/shoppingCart");
+                    return;
+                }
+            }
+            if(found != true)
+            {
+                foodItemsModule.find({title: req.params.title})
+                .exec()
+                .then((mealKit)=>{
+                    req.session.cart = req.session.cart || [];
+                   
+                    let toBeCarted = mealKit.map(value => {
+                        return {
+                            title: value.title,
+                            wIncluded: value.wIncluded,
+                            description: value.description,
+                            category: value.category,
+                            price: value.price,
+                            cookingTime: value.cookingTime,
+                            servings: value.servings,
+                            calories: value.calories,
+                            photo: value.photo,
+                            qty: 1
+                        }
+                    });
+                    req.session.user.cart.push(toBeCarted[0]);
+                    res.redirect("/load-data/shoppingCart");
+                });
+
+                    
+            }
+        }
+        else
+        {
+            
+            foodItemsModule.find({title: req.params.title})
+            .exec()
+            .then((mealKit)=>{
+                req.session.cart = req.session.cart || [];
+            
+                let toBeCarted = mealKit.map(value => {
+                    return {
+                        title: value.title,
+                        wIncluded: value.wIncluded,
+                        description: value.description,
+                        category: value.category,
+                        price: value.price,
+                        cookingTime: value.cookingTime,
+                        servings: value.servings,
+                        calories: value.calories,
+                        photo: value.photo,
+                        qty: 1
+                    }
+                });
+                req.session.user.cart.push(toBeCarted[0]);
+                res.redirect("/load-data/shoppingCart");
+       
+            });
+
+        }
+    }
+    else 
+    {
+        errors.push("You need to be logged in to buy!!!");
+  
+        res.render("general/login", {
+            errors
+        });
+    }
+
+
+});
+
+router.post("/check-out", (req, res) => {
+    let result = [];
+    console.log("Thank you for shopping with us!!!");
+    result.push("Thank you for shopping with us!!!");
+
+
+    let orderDetails = 
+    `<table style="border-spacing: 20px">
+        <tr>
+            <th>        Name        </th>
+            <th>        Description     </th>
+            <th>        Price       </th>
+            <th>        Quantity        </th>
+        </tr>`;
+
+    req.session.user.cart.forEach(mealKit =>{
+        orderDetails += 
+        `<tr>
+            <td>    ${mealKit.title}    </td>
+            <td>    ${mealKit.description}  </td>
+            <td>    ${mealKit.price}    </td>
+            <td>    ${mealKit.qty}  </td>
+        </tr>`;
+    });
+
+    orderDetails += `</table>`;
+
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+    const msg = {
+        to: req.session.user.email,
+        from: "dverma22@myseneca.ca",
+        subject: "Contact Us Form Submission",
+        html:
+            ` <p>You have place the order for</p>
+            ${orderDetails}
+            <p>The total price is ${total}</p>`
+    };
+      // Asyncronously sends the email message.
+      sgMail.send(msg)
+      .then(() => {
+        req.session.user.cart = [];
+        total = 0;
+        res.render("general/shoppingCart",{
+            result: result
+        });
+          })
+      .catch(err => {
+          console.log(`Error ${err}`);
+          res.send(`CANT SEND EMAIL:- ${err}`);
+      }); 
+
+
+  });
+
 
 module.exports = router;  
 
