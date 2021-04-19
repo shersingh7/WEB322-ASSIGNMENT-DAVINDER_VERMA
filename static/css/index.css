@@ -159,14 +159,6 @@ footer
 
 
 /* Login Page */
-/* 
-input[type=text], select, textarea , input[type=password]
-{
-  width: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  margin-top: 6px;
-} */
   
 input[type=button], input[type=submit] 
 {
@@ -281,7 +273,6 @@ input[type=submit]:hover
 {
     height: 200px;
     width: 350px;
-    /* display: flex; */
 }
 
 .onTheMenu > form > img
@@ -333,6 +324,10 @@ input[type=submit]:hover
         grid-template-columns: 1fr;
     }
 
+    .myfooter,.myHeader
+    {
+        display: grid;
+    }
 }
 
 /*Small devices (landscape phones, 576px and up)*/
@@ -366,6 +361,10 @@ input[type=submit]:hover
         grid-template-columns: 1fr;
     }
 
+    .myfooter,.myHeader
+    {
+        display: grid;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -380,4 +379,10 @@ input[type=submit]:hover
     {
         grid-template-columns: 1fr;
     }
+
+    .myfooter,.myHeader
+    {
+        display: grid;
+    }
+
 }
