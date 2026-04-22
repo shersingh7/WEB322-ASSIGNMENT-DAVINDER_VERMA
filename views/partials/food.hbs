@@ -1,9 +1,9 @@
-    <h4>{{title}}</h4>
-    <p>{{wIncluded}}</p>
-    <p>{{description}}</p>
-    <p>Price:- {{price}}$</p>
-    <p>Cooking Time:- {{cookingTime}} Mins</p>
-    <p>Servings:- {{servings}}</p>
-    <p>Calories:- {{calories}}</p>   
-
-
+<h4>{{title}}</h4>
+<p style="color:var(--text-light); font-size:0.9rem; margin-bottom:6px;">{{wIncluded}}</p>
+<p style="font-size:0.85rem; color:var(--text-light); line-height:1.5; margin-bottom:10px;">{{description}}</p>
+<div class="meal-meta">
+  <span><i class="far fa-clock"></i> {{cookingTime}} min</span>
+  <span><i class="fas fa-fire"></i> {{calories}} cal</span>
+  <span><i class="fas fa-user-friends"></i> {{servings}} srv</span>
+</div>
+<div class="meal-price" style="margin-top:8px;">${{price}}</div>

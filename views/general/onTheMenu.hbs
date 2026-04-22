@@ -1,34 +1,56 @@
-<p class="menuText">Inspired by the freshest ingredients, our chefs create eighteen unique recipes each and every week.</p>
-<br>
-
-<h3 class="menuHeading">Classic Meals</h3>
-
-<div class="onTheMenu">
-    {{#each classic}}
-            <div class="grid">
-               <img src="{{photo}}"> 
-               <a href="/load-data/{{this.title}}" style="all:unset;">
-                 {{>food this}}
-               </a>
-            </div>
-    {{/each}} 
-
+<div class="page-header">
+  <h1>On The Menu</h1>
+  <p>Inspired by the freshest ingredients, our chefs create unique recipes each week.</p>
 </div>
 
-<br>
+<section class="section">
+  <div class="menu-categories reveal">
+    <span class="active">All</span>
+    <a href="#classics">Classic Meals</a>
+    <a href="#starters">Starters</a>
+  </div>
 
-<h3 class="menuHeading">Starters</h3>
+  <h2 id="classics" class="section-title reveal" style="text-align:left; margin-top:40px;">
+    <span style="font-size:1.8rem; font-weight:900; color:var(--dark);">Classic Meals</span>
+  </h2>
+  <div class="meals-grid">
+    {{#each classic}}
+    <div class="meal-card reveal">
+      <div class="meal-image">
+        <img src="{{photo}}" alt="{{title}}">
+      </div>
+      <div class="meal-info">
+        {{>food this}}
+        <div class="meal-actions" style="margin-top:14px;">
+          <a href="/load-data/{{title}}" class="btn btn-secondary">Details</a>
+          <form method="POST" action="/load-data/addToCart/{{title}}" style="flex:1">
+            <button type="submit" class="btn btn-primary" style="width:100%">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 
-<div class="onTheMenu">
-   {{#each starter}}
-            <div class="grid">
-      <img src="{{photo}}"> 
-
-               <a href="/load-data/{{this.title}}" style="all:unset;">
-                 {{>food this}}
-               </a>
-
-            </div>
-   {{/each}} 
-
-</div>   
+  <h2 id="starters" class="section-title reveal" style="text-align:left; margin-top:60px;">
+    <span style="font-size:1.8rem; font-weight:900; color:var(--dark);">Starters</span>
+  </h2>
+  <div class="meals-grid">
+    {{#each starter}}
+    <div class="meal-card reveal">
+      <div class="meal-image">
+        <img src="{{photo}}" alt="{{title}}">
+      </div>
+      <div class="meal-info">
+        {{>food this}}
+        <div class="meal-actions" style="margin-top:14px;">
+          <a href="/load-data/{{title}}" class="btn btn-secondary">Details</a>
+          <form method="POST" action="/load-data/addToCart/{{title}}" style="flex:1">
+            <button type="submit" class="btn btn-primary" style="width:100%">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</section>

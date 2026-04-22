@@ -1,163 +1,98 @@
-<p class="menuText">Inspired by the freshest ingredients, our chefs create eighteen unique recipes each and every week.</p>
-<br>
+<div class="page-header">
+  <h1>Clerk Dashboard</h1>
+  <p>Update meal kits and manage your menu.</p>
+</div>
 
-<h3 class="menuHeading">Classic Meals</h3>
-
-<div class="onTheMenu">
-
-   {{#each result}}
-      <p style="color: red;">{{this}}</p>
-   {{/each}}
-
-
-   {{#each classic}} 
-    <div class="grid">
-      <img src="{{photo}}"> 
-
+<section class="section">
+  <h2 class="section-title reveal" style="text-align:left;">
+    <span style="font-size:1.8rem; font-weight:900; color:var(--dark);">Classic Meals</span>
+  </h2>
+  <div class="clerk-grid">
+    {{#each result}}
+      <p style="color:#ff6b6b; font-weight:700;">{{this}}</p>
+    {{/each}}
+    {{#each classic}}
+    <div class="clerk-card reveal">
+      <img src="{{photo}}" alt="{{title}}">
       <form action="/load-data/update" method="POST">
+        <input type="hidden" name="id" value="{{_id}}">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" value="{{title}}">
+        </div>
+        <div class="form-group">
+          <label>Included</label>
+          <input type="text" name="wIncluded" value="{{wIncluded}}">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" rows="2">{{description}}</textarea>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="text" name="price" value="{{price}}">
+        </div>
+        <div class="form-group">
+          <label>Cooking Time</label>
+          <input type="text" name="cookingTime" value="{{cookingTime}}">
+        </div>
+        <div class="form-group">
+          <label>Servings</label>
+          <input type="text" name="servings" value="{{servings}}">
+        </div>
+        <div class="form-group">
+          <label>Calories</label>
+          <input type="text" name="calories" value="{{calories}}">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Update Meal</button>
+      </form>
+    </div>
+    {{/each}}
+  </div>
 
-      <div class="updateMealKit">
-         <input type="hidden" id="custId" name="id" value="{{_id}}">
-               <label for="title" style="left: 0%;">Title:</label><br>
-
-         <input type="text" name="title" value="{{title}}">
-
-      </div>   
-
-      <div class="updateMealKit">
-               <label for="cookingTime">What is included:</label><br>
-
-         <input type="text" name="wIncluded" value="{{wIncluded}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="cookingTime">Cooking Time:</label><br>
-
-         <input type="text" name="description" value="{{description}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-
-               <label for="price">Price:</label><br>
-         <input type="text" name="price" value="{{price}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="cookingTime">Cooking Time:</label><br>
-         <input type="text" name="cookingTime" value="{{cookingTime}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="servings">Servings:</label><br>
-         <input type="text" name="servings" value="{{servings}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="calories">Calories Per Serving:</label><br>
-         <input type="text" name="calories" value="{{calories}}">
-
-      </div> 
-
-
-      <div class="updateMealKit">
-
-         <label>Change photo of the meal kit</label><br>
-         <input type="file" name="photo" accept="image/*" id="photo"> <br><br>
-
-      </div>
-
-      <div class="submitBtn">
-         <input type="submit"  name="submit" value="Update">
-      </div>
-
-   </form>
-</div> 
-
-{{/each}}  
-
-</div>
-
-<br>
-
-<h3 class="menuHeading">Starters</h3>
-
-<div class="onTheMenu">
-
-   {{#each result}}
-      <p style="color: red;">{{this}}</p>
-   {{/each}}
-
-   {{#each starter}}
-      <div class="grid">
-         <img src="{{photo}}">
-
-         <form action="/load-data/update" method="POST">
-
-      <div class="updateMealKit">
-         <input type="hidden" id="custId" name="id" value="{{_id}}">
-               <label for="title" style="left: 0%;">Title:</label><br>
-
-         <input type="text" name="title" value="{{title}}">
-
-      </div>   
-
-      <div class="updateMealKit">
-               <label for="cookingTime">What is included:</label><br>
-
-         <input type="text" name="wIncluded" value="{{wIncluded}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="cookingTime">Cooking Time:</label><br>
-
-         <input type="text" name="description" value="{{description}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-
-               <label for="price">Price:</label><br>
-         <input type="text" name="price" value="{{price}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="cookingTime">Cooking Time:</label><br>
-         <input type="text" name="cookingTime" value="{{cookingTime}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="servings">Servings:</label><br>
-         <input type="text" name="servings" value="{{servings}}">
-
-      </div>  
-
-      <div class="updateMealKit">
-               <label for="calories">Calories Per Serving:</label><br>
-         <input type="text" name="calories" value="{{calories}}">
-
-      </div> 
-
-
-      <div class="updateMealKit">
-
-         <label>Change photo of the meal kit</label><br>
-         <input type="file" name="photo" accept="image/*" id="photo"> <br><br>
-
-      </div>
-
-      <div class="submitBtn">
-         <input type="submit"  name="submit" value="Update">
-      </div>
-
-   </form>
-</div>
-{{/each}} 
-</div>
+  <h2 class="section-title reveal" style="text-align:left; margin-top:60px;">
+    <span style="font-size:1.8rem; font-weight:900; color:var(--dark);">Starters</span>
+  </h2>
+  <div class="clerk-grid">
+    {{#each result}}
+      <p style="color:#ff6b6b; font-weight:700;">{{this}}</p>
+    {{/each}}
+    {{#each starter}}
+    <div class="clerk-card reveal">
+      <img src="{{photo}}" alt="{{title}}">
+      <form action="/load-data/update" method="POST">
+        <input type="hidden" name="id" value="{{_id}}">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" name="title" value="{{title}}">
+        </div>
+        <div class="form-group">
+          <label>Included</label>
+          <input type="text" name="wIncluded" value="{{wIncluded}}">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" rows="2">{{description}}</textarea>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="text" name="price" value="{{price}}">
+        </div>
+        <div class="form-group">
+          <label>Cooking Time</label>
+          <input type="text" name="cookingTime" value="{{cookingTime}}">
+        </div>
+        <div class="form-group">
+          <label>Servings</label>
+          <input type="text" name="servings" value="{{servings}}">
+        </div>
+        <div class="form-group">
+          <label>Calories</label>
+          <input type="text" name="calories" value="{{calories}}">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Update Meal</button>
+      </form>
+    </div>
+    {{/each}}
+  </div>
+</section>

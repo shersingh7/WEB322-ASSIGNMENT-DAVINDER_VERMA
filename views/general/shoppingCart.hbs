@@ -1,34 +1,45 @@
-<div class="onTheMenu" style="margin-left: 0px; margin-top: 50px; left">
-
-{{#each result}}
-        <p style="color: red; font-weight:bolder">{{this}}</p>
-{{/each}}
-
-{{#each cart}}
-            <div class="grid">
-               <img src="/{{photo}}"> 
-                 {{>food}}
-                 <p>Quantity: {{qty}}</p>
-            </div>
-{{/each}}
+<div class="page-header">
+  <h1>Your Cart</h1>
+  <p>Review your selections before checkout.</p>
 </div>
-{{#if result}}
-{{else}}
-<br>
-<section style="margin-left: 70px; text-align:center">
-        <p>Total Cart Price: {{totalPrice}}</p>
-        <br>
 
-        <form method="POST" action="/load-data/check-out">
-                <input type="submit" value="CheckOut"/>
-        </form>
+<section class="section">
+  {{#each result}}
+    <div style="max-width:600px; margin:0 auto 20px; background:#fff0f0; border-left:4px solid #ff6b6b; padding:16px 20px; border-radius:8px;">
+      <p style="color:#d00000; font-weight:700;"><i class="fas fa-circle-exclamation"></i> {{this}}</p>
+    </div>
+  {{/each}}
 
+  <div class="cart-grid">
+    {{#each cart}}
+    <div class="cart-item reveal">
+      <img src="/{{photo}}" alt="">
+      <div class="cart-item-info">
+        <h4>{{title}}</h4>
+        <p>{{wIncluded}}</p>
+        <p style="color:var(--primary); font-weight:800; margin-top:4px;">${{price}}</p>
+      </div>
+      <div class="cart-qty">Qty: {{qty}}</div>
+    </div>
+    {{/each}}
+  </div>
+
+  {{#if result}}
+  {{else}}
+  {{#if user}}
+  <div class="cart-summary reveal">
+    <div class="total">Total: <span>${{totalPrice}}</span></div>
+    <form method="POST" action="/load-data/check-out">
+      <button type="submit" class="btn btn-primary" style="padding:16px 48px; font-size:1.1rem;">
+        <i class="fas fa-lock"></i> Checkout Securely
+      </button>
+    </form>
+  </div>
+  {{else}}
+  <div style="text-align:center; margin-top:60px;">
+    <h3 style="font-size:1.5rem; color:var(--text-light);">Your cart is empty</h3>
+    <a href="/onTheMenu" class="hero-cta" style="margin-top:20px; display:inline-flex;">Browse Menu</a>
+  </div>
+  {{/if}}
+  {{/if}}
 </section>
-{{/if}}
-
-{{#if user}} 
-
-{{else}}
-<h3>You have nothing in your cart</h3>
-{{/if}}
-

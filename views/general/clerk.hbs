@@ -1,127 +1,82 @@
-<h3>CLERK</h3>
+<div class="page-header">
+  <h1>Add Meal Kit</h1>
+  <p>Create a new meal kit for your customers.</p>
+</div>
 
 {{#if user.clerk}}
+<section class="form-container">
+  <div class="form-card">
+    {{#each errors}}
+      <p class="form-error"><i class="fas fa-circle-exclamation"></i> {{this}}</p>
+    {{/each}}
+    {{#each result}}
+      <p class="form-error"><i class="fas fa-circle-exclamation"></i> {{this}}</p>
+    {{/each}}
 
-<section class="addMealKit">
-
-        {{#each errors}}
-            <p style="color: red;">{{this}}</p>
-        {{/each}}
-
-        {{#each result}}
-           <p style="color: red;">{{this}}</p>
-        {{/each}}
-
-    
     <form action="/load-data/meal-kits" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Meal Title</label>
+        <input type="text" id="title" name="title" placeholder="e.g. Butter Chicken Thali">
+      </div>
 
-        <div class="addMealKit">
+      <div class="form-group">
+        <label for="wIncluded">What's Included</label>
+        <input type="text" id="wIncluded" name="wIncluded" placeholder="e.g. Naan, Rice, Raita">
+      </div>
 
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Describe the flavors and origins..."></textarea>
+      </div>
 
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" id="category">
+          <option value="classic">Classic Meal</option>
+          <option value="starter">Starter</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price (CAD)</label>
+        <input type="text" id="price" name="price" placeholder="24.99">
+      </div>
+
+      <div class="form-group">
+        <label for="cookingTime">Cooking Time (minutes)</label>
+        <input type="text" id="cookingTime" name="cookingTime" placeholder="35">
+      </div>
+
+      <div class="form-group">
+        <label for="servings">Servings</label>
+        <input type="text" id="servings" name="servings" placeholder="2">
+      </div>
+
+      <div class="form-group">
+        <label for="calories">Calories Per Serving</label>
+        <input type="text" id="calories" name="calories" placeholder="680">
+      </div>
+
+      <div class="form-group">
+        <label>Top Meal?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="topMeal" value="true"> Yes</label>
+          <label><input type="radio" name="topMeal" value="false" checked> No</label>
         </div>
+      </div>
 
-        <br>
+      <div class="form-group">
+        <label>Upload Photo</label>
+        <input type="file" name="photo" accept="image/*" id="photo">
+      </div>
 
-        <div class="addMealKit">
-
-            <label for="wIncluded">What is included:</label><br>
-            <input type="text" id="wIncluded" name="wIncluded">
-
-        </div>
-
-        <br>
-
-        <div class="addMealKit">
-
-            <label for="description">Description:</label><br>
-            <textarea id="description" name="description" rows="4" cols="50"></textarea>
-
-        </div>
-
-        <br>
-        
-        <div class="addMealKit">  
-
-           <label for="category">Category:</label>
-
-                <select name="category" id="category">
-                    <option value="classic">Classic</option>
-                    <option value="starter">Starter</option>
-                </select>
-
-        </div>   
-        
-        <br>
-        
-        <div class="addMealKit">
-
-            <label for="price">Price:</label><br>
-            <input type="text" id="price" name="price" >
-
-        </div>
-
-         <br>
-        
-        <div class="addMealKit">
-
-            <label for="cookingTime">Cooking Time:</label><br>
-            <input type="text" id="cookingTime" name="cookingTime" >
-
-        </div>
-
-         <br>
-        
-        <div class="addMealKit">
-
-            <label for="servings">Servings:</label><br>
-            <input type="text" id="servings" name="servings" >
-
-        </div>
-
-         <br>
-        
-        <div class="addMealKit">
-
-            <label for="calories">Calories Per Serving:</label><br>
-            <input type="text" id="calories" name="calories" >
-
-        </div>
-
-         <br>
-        
-        <div class="addMealKit">
-
-            <label for="topMeal">Top Meal:</label><br>
-
-            <input type="radio" name="topMeal" id="true" value="true" checked="false">
-            <label for="true">True</label>
-
-            <input type="radio" name="topMeal" id="false" value="false" checked="false">
-            <label for="false">False</label>
-
-        </div>
-
-         <br>
-        
-        <div class="addMealKit">
-
-            <label>Upload a photo of the meal kit</label>
-            <input type="file" name="photo" accept="image/*" id="photo"> <br><br>
-
-        </div>
-        
-        <br>
-        
-        <div class="submitBtn">
-            <input type="submit" value="Add the meal">
-        </div>
-
-
-
+      <button type="submit" class="btn btn-primary btn-submit">Add Meal Kit</button>
     </form>
-
+  </div>
 </section>
-{{else}} <h3>Only Clerk can access this page</h3>
+{{else}}
+<div class="section" style="text-align:center;">
+  <h2 style="color:#ff6b6b; font-size:2rem;"><i class="fas fa-lock"></i> Access Denied</h2>
+  <p>Only authorized clerks can access this page.</p>
+</div>
 {{/if}}

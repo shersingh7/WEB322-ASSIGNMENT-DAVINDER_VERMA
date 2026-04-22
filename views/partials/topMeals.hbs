@@ -1,13 +1,32 @@
- <div class="meals">
-                <br>
-                <br>
-                <h3  class="center" style="font-size: xx-large;">WHAT'S ON THE MENU THIS WEEK</h3>
-
-        {{#each foodInfo}}
-                <div class="topMeals">
-                        <img src="{{photo}}">
-                        {{>food this}} 
-                </div>          
-        {{/each}}
-    
- </div>
+<section class="section meals-section">
+  <div class="section-title reveal">
+    <h2>This Week's Top Picks</h2>
+    <p>Handpicked favorites by our chefs and customers</p>
+  </div>
+  <div class="meals-grid">
+    {{#each foodInfo}}
+    <div class="meal-card reveal">
+      <div class="meal-image">
+        <img src="{{photo}}" alt="{{title}}">
+        <div class="meal-badge">Top Meal</div>
+      </div>
+      <div class="meal-info">
+        <h4>{{title}}</h4>
+        <p style="color:var(--text-light); font-size:0.9rem;">{{wIncluded}}</p>
+        <div class="meal-meta">
+          <span><i class="far fa-clock"></i> {{cookingTime}} min</span>
+          <span><i class="fas fa-fire"></i> {{calories}} cal</span>
+          <span><i class="fas fa-user-friends"></i> {{servings}}</span>
+        </div>
+        <div class="meal-price">${{price}} <span>/ serving</span></div>
+        <div class="meal-actions">
+          <a href="/load-data/{{title}}" class="btn btn-secondary">Details</a>
+          <form method="POST" action="/load-data/addToCart/{{title}}" style="flex:1">
+            <button type="submit" class="btn btn-primary" style="width:100%">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</section>

@@ -1,37 +1,51 @@
-<header>        
-
+<header>
+  <div class="nav-container">
     <div class="logo">
-        <a href="/">
-        <img alt="desi khana" src="/images/logo.jpg" height="100px">
-    </a>
-    </div>
-    
-    <div class="links myHeader">
-        {{#if user.clerk}}
-            <a href="/onTheMenuClerk">ON THE MENU</a>
-        {{else}}
-            <a href="/onTheMenu">ON THE MENU</a>
-        {{/if}}
-        <a href="">PRICING</a>
-        <a href="">BLOG</a>
-        <a href="">FAQ</a>
-        <a href="">ANNE-MARIE WITENSHAW</a>
-        <a href="">GIFT CARDS</a>
-        <a href="">BREAKFAST</a>
-        {{#if user.clerk}}
-                <a href="/load-data/meal-kits">ADD MEAL KITS</a>
-        {{/if}}
-        {{#if user.customer}}
-                <a href="/load-data/shoppingCart">SHOPPING CART</a>
-        {{/if}}
-
-         {{#if user}}
-            <p style="margin-left: 0px;margin-bottom:3px ;">Hello {{user.fname}} {{user.lname}}!  <button onclick="document.location='/login/logout' "style="float: right;margin-top: 0px;">Logout</button></p>
-        {{else}}
-            <button onclick="document.location='/login'"style="float: right;margin-top: 4px;">Login</button>
-            <button onclick="document.location='/registration'"style="margin-left: 700px;margin-bottom:3px ;">Sign Up</button>
-        {{/if}}
+      <a href="/">
+        <img alt="Desi Khana" src="/images/logo.jpg">
+        <span>Desi Khana</span>
+      </a>
     </div>
 
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
 
-    </header>
+    <nav class="nav-links">
+      {{#if user.clerk}}
+        <a href="/onTheMenuClerk">On The Menu</a>
+      {{else}}
+        <a href="/onTheMenu">On The Menu</a>
+      {{/if}}
+      <a href="/">Pricing</a>
+      <a href="/">Blog</a>
+      <a href="/">FAQ</a>
+      {{#if user.clerk}}
+        <a href="/load-data/meal-kits">Add Meal Kits</a>
+      {{/if}}
+      {{#if user.customer}}
+        <a href="/load-data/shoppingCart">Shopping Cart</a>
+      {{/if}}
+
+      <div class="mobile-auth">
+        {{#if user}}
+          <span class="user-greeting">Hello {{user.fname}}!</span>
+          <button onclick="location.href='/login/logout'">Logout</button>
+        {{else}}
+          <button class="btn-ghost" onclick="location.href='/login'">Log In</button>
+          <button onclick="location.href='/registration'">Sign Up</button>
+        {{/if}}
+      </div>
+    </nav>
+
+    <div class="nav-auth">
+      {{#if user}}
+        <span class="user-greeting">Hello, {{user.fname}}</span>
+        <button onclick="location.href='/login/logout'">Logout</button>
+      {{else}}
+        <button class="btn-ghost" onclick="location.href='/login'">Log In</button>
+        <button onclick="location.href='/registration'">Sign Up</button>
+      {{/if}}
+    </div>
+  </div>
+</header>

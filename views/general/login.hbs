@@ -1,57 +1,40 @@
-<h3 class="welcome">Welcome back</h3>
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Sign in to your Desi Khana account</p>
 
-<section class="loginIn">
-    
     {{#each errors}}
-        <p style="color: red;">{{this}}</p>
+      <p class="form-error"><i class="fas fa-circle-exclamation"></i> {{this}}</p>
     {{/each}}
-    
+
     <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" value="{{values.email}}">
+        {{#if validationResults.email}}
+          <p class="form-error"><i class="fas fa-circle-exclamation"></i> {{validationResults.email}}</p>
+        {{/if}}
+      </div>
 
-        <div class="loginIn">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••">
+        {{#if validationResults.password}}
+          <p class="form-error"><i class="fas fa-circle-exclamation"></i> {{validationResults.password}}</p>
+        {{/if}}
+      </div>
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" value={{values.email}}>
-
-            <br>
-
-            {{#if validationResults.email}}
-                <span style="color: red;">{{ validationResults.email }}</span><br/>
-            {{/if}}
-
+      <div class="form-group">
+        <label>Account Type</label>
+        <div class="radio-group">
+          <label><input type="radio" name="type" value="customer" checked> Customer</label>
+          <label><input type="radio" name="type" value="clerk"> Data Clerk</label>
         </div>
+      </div>
 
-        <br>
-
-        <div class="loginIn">
-
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" >
-
-            <br>
-
-            {{#if validationResults.password}}
-                <span style="color: red;">{{ validationResults.password }}</span><br/>
-            {{/if}}
-
-        </div>
-
-        <div class="loginIn">
-
-            <input type="radio" name="type" id="customer" value="customer" >
-            <label for="customer">Customer</label>
-
-            <input type="radio" name="type" id="clerk" value="clerk" >
-            <label for="clerk">Data Entry Clerk</label>
- 
-        </div>
-
-        <br>
-
-        <div class="submitBtn">
-            <input type="submit"  id="submit" value="Log in">
-        </div>
-
+      <button type="submit" class="btn-submit">Sign In</button>
     </form>
 
-</section>
+    <p class="auth-footer">Don't have an account? <a href="/registration">Create one</a></p>
+  </div>
+</div>
